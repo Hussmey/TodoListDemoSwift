@@ -1,19 +1,17 @@
-//
-//  ContentView.swift
-//  Todolist
-//
-//  Created by devsEfusion on 20/11/2023.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var isSignedIn: Bool = false
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            if isSignedIn {
+                TodoListView(username: email)
+            } else {
+                SignInView(email: $email, password: $password, isSignedIn: $isSignedIn)
+            }
         }
         .padding()
     }
